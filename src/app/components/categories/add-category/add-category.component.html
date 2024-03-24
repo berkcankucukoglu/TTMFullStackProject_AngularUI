@@ -1,0 +1,36 @@
+<div class="container my-5">
+  <h1 class="mb-3">Add New Category</h1>
+
+  <div class="row">
+    <div class="col-6">
+      <form #form="ngForm" (ngSubmit)="addCategory()">
+        <div class="mb-3">
+          <label for="name" class="form-label">Category Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            [(ngModel)]="addCategoryRequest.name"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            rows="5"
+            maxlength="500"
+            name="description"
+            [(ngModel)]="addCategoryRequest.description"
+          ></textarea>
+        </div>
+        <a class="btn btn-danger me-3" routerLink="/categories" role="button"
+          >Cancel</a
+        >
+        <button type="submit" class="btn btn-dark">Save</button>
+      </form>
+    </div>
+    <div class="col-6"></div>
+  </div>
+</div>

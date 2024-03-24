@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Category } from '../../../models/category.model';
@@ -19,7 +19,6 @@ export class CategoriesListComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.getAllCategories().subscribe({
       next: (categories) => {
-        console.log(categories);
         this.categories = categories;
       },
       error: (response) => {

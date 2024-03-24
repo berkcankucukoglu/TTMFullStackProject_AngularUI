@@ -15,4 +15,11 @@ export class CategoriesService {
   getAllCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.baseApiUrl + '/api/category');
   }
+
+  addCategory(addCategoryRequest: Category): Observable<Category> {
+    return this.http.post<Category>(
+      this.baseApiUrl + '/api/category',
+      addCategoryRequest
+    );
+  }
 }
