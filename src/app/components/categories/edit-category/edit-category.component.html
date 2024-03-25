@@ -1,17 +1,29 @@
 <div class="container my-5">
-  <h1 class="mb-3">Add New Category</h1>
+  <h1 class="mb-3">Edit Category</h1>
 
   <div class="row">
     <div class="col-6">
-      <form #form="ngForm" (ngSubmit)="addCategory()">
+      <form #form="ngForm" (ngSubmit)="updateCategory()">
         <div class="mb-3 mt-3">
+          <label for="id" class="form-label">Id</label>
+          <input
+            type="number"
+            class="form-control"
+            id="id"
+            name="id"
+            readonly
+            disabled
+            [(ngModel)]="categoryDetails.id"
+          />
+        </div>
+        <div class="mb-3">
           <label for="name" class="form-label">Category Name</label>
           <input
             type="text"
             class="form-control"
             id="name"
             name="name"
-            [(ngModel)]="addCategoryRequest.name"
+            [(ngModel)]="categoryDetails.name"
           />
         </div>
         <div class="mb-3">
@@ -22,7 +34,7 @@
             rows="5"
             maxlength="500"
             name="description"
-            [(ngModel)]="addCategoryRequest.description"
+            [(ngModel)]="categoryDetails.description"
           ></textarea>
         </div>
         <div class="d-flex mb-3">
@@ -35,7 +47,16 @@
             >
           </div>
           <div>
-            <button type="submit" class="btn btn-dark">Save</button>
+            <button type="submit" class="btn btn-dark me-3">Save</button>
+          </div>
+          <div class="ms-auto">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="deleteCategory(categoryDetails.id)"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </form>

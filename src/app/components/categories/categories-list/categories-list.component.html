@@ -15,6 +15,7 @@
         <th scope="col">Id</th>
         <th scope="col">Name</th>
         <th scope="col">Description</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +23,11 @@
         <th scope="row">{{ category.id }}</th>
         <td>{{ category.name }}</td>
         <td>{{ category.description }}</td>
+        <td>
+          <a [routerLink]="['/categories', 'edit', category.id]"
+            ><i class="fas fa-pen-to-square fa-lg text-dark"></i
+          ></a>
+        </td>
       </tr>
     </tbody>
   </table>

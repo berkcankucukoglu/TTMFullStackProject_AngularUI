@@ -22,4 +22,22 @@ export class CategoriesService {
       addCategoryRequest
     );
   }
+
+  getCategory(id: number | string | null): Observable<Category> {
+    return this.http.get<Category>(this.baseApiUrl + '/api/category/' + id);
+  }
+
+  updateCategory(
+    id: number | string,
+    updateCategoryRequest: Category
+  ): Observable<Category> {
+    return this.http.put<Category>(
+      this.baseApiUrl + '/api/category/' + id,
+      updateCategoryRequest
+    );
+  }
+
+  deleteCategory(id: number | string | null): Observable<Category> {
+    return this.http.delete<Category>(this.baseApiUrl + '/api/category/' + id);
+  }
 }
