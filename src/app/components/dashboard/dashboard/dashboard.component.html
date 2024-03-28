@@ -1,1 +1,68 @@
-<p>dashboard works!</p>
+<div class="centered-content">
+  <div class="task-manager-container">
+    <div class="sidebar">
+      <h1 class="title">Lists</h1>
+      <div class="list-menu">
+        <a
+          class="list-menu-item"
+          *ngFor="let list of lists"
+          [routerLink]="['/dashboard', list.id]"
+          routerLinkActive="is-active"
+        >
+          <a (click)="editProjectPopUp(list.id)"
+            ><i class="fas fa-pen-to-square me-2"></i
+          ></a>
+          <p>
+            <strong
+              ><u>{{ list.name }}</u></strong
+            >
+            <br />
+            Description: {{ list.description }}
+          </p>
+        </a>
+      </div>
+      <button type="button" class="btn btn-dark" (click)="addProjectPopUp()">
+        + New List
+      </button>
+    </div>
+
+    <div class="task-list-container">
+      <h1 class="title">Tasks</h1>
+      <p class="mb-3 mt-3" *ngIf="!hasParam">
+        There is currently no project selected. Please add a project or select
+        one to view tasks...
+      </p>
+      <p class="mb-3 mt-3" *ngIf="hasParam && tasks.length === 0">
+        There are currently no tasks. Please add some tasks to view them...
+      </p>
+      <div
+        class="d-flex task"
+        *ngFor="let task of tasks"
+        (click)="editTaskPopUp(task.id)"
+      >
+        <p>
+          <strong>{{ task.name }}</strong> <br />
+          Description: {{ task.description }}
+        </p>
+        <a class="ms-auto text-dark"
+          ><i class="fas fa-pen-to-square p-3"></i
+        ></a>
+      </div>
+      <button
+        class="btn circle-add-button mt-3"
+        *ngIf="hasParam"
+        (click)="addTaskPopUp()"
+      >
+        <i class="fa-solid fa-plus fa-xl text-white"></i>
+      </button>
+      <button
+        class="btn circle-add-button mt-3"
+        *ngIf="!hasParam"
+        disabled
+        (click)="addTaskPopUp()"
+      >
+        <i class="fa-solid fa-plus fa-xl text-white"></i>
+      </button>
+    </div>
+  </div>
+</div>

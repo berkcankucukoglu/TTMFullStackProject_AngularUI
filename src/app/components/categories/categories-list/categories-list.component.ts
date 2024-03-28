@@ -12,9 +12,8 @@ import { CategoriesService } from '../../../services/categories.service';
   styleUrl: './categories-list.component.css',
 })
 export class CategoriesListComponent implements OnInit {
-  categories: Category[] = [];
-
   constructor(private categoryService: CategoriesService) {}
+  categories: Category[] = [];
 
   ngOnInit(): void {
     this.categoryService.getAllCategories().subscribe({

@@ -7,6 +7,15 @@ import { EditCategoryComponent } from './components/categories/edit-category/edi
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: '/dashboard',
+    pathMatch: 'full',
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+  },
+  {
+    path: 'dashboard/:projectId',
     component: DashboardComponent,
   },
   {

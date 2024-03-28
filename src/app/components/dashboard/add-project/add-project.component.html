@@ -1,0 +1,67 @@
+<div class="container my-5">
+  <h1 class="mb-3">New Project: {{ addProjectRequest.name }}</h1>
+
+  <div class="row">
+    <div class="col-12">
+      <form #form="ngForm" (ngSubmit)="addProject()">
+        <div class="row mb-3 mt-3">
+          <div class="col-6">
+            <label for="name" class="form-label">Project Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              [(ngModel)]="addProjectRequest.name"
+              placeholder="New Project"
+              required
+            />
+          </div>
+          <div class="col-6">
+            <label for="categoryId" class="form-label">Category</label>
+            <select
+              class="form-select"
+              id="categoryId"
+              name="categoryId"
+              [(ngModel)]="addProjectRequest.categoryId"
+              required
+            >
+              <option disabled selected>Please select a category</option>
+              <option
+                *ngFor="let category of categories"
+                [value]="category.id"
+                [selected]="category.id === addProjectRequest.categoryId"
+              >
+                {{ category.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12 mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            rows="5"
+            maxlength="500"
+            name="description"
+            placeholder="(Optional)Please write a suitable description for this project..."
+            [(ngModel)]="addProjectRequest.description"
+          ></textarea>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div>
+            <a class="btn btn-danger me-3" role="button" (click)="closePopUp()"
+              >Cancel</a
+            >
+          </div>
+          <div>
+            <button type="submit" class="btn btn-dark">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-6"></div>
+  </div>
+</div>

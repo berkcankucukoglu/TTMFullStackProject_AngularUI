@@ -1,0 +1,95 @@
+<div class="container my-5">
+  <h1 class="mb-3">Task: {{ editTaskRequest.name }}</h1>
+
+  <div class="row">
+    <div class="col-12">
+      <form #form="ngForm" (ngSubmit)="editDuty()">
+        <div class="row mb-3 mt-3">
+          <div class="col-6">
+            <label for="name" class="form-label">Task Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              [(ngModel)]="editTaskRequest.name"
+            />
+          </div>
+          <div class="col-6">
+            <label for="projectId" class="form-label">Connected Project</label>
+            <select
+              class="form-select"
+              id="projectId"
+              name="projectId"
+              [(ngModel)]="editTaskRequest.projectId"
+              required
+            >
+              <option
+                *ngFor="let project of projects"
+                [value]="project.id"
+                [selected]="project.id === editTaskRequest.projectId"
+              >
+                {{ project.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12 mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            rows="5"
+            maxlength="500"
+            name="description"
+            placeholder="(Optional)Please write a suitable description for this project..."
+            [(ngModel)]="editTaskRequest.description"
+          ></textarea>
+        </div>
+        <div class="row mb-3">
+          <div class="col-6">
+            <label class="form-label" for="startDate">Start Date</label>
+            <input
+              type="datetime-local"
+              class="form-control"
+              id="startDate"
+              name="startDate"
+              [(ngModel)]="editTaskRequest.startDate"
+            />
+          </div>
+          <div class="col-6">
+            <label class="form-label" for="endDate">End Date</label>
+            <input
+              type="datetime-local"
+              class="form-control"
+              id="endDate"
+              name="endDate"
+              [(ngModel)]="editTaskRequest.endDate"
+            />
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div>
+            <a class="btn btn-danger me-3" role="button" (click)="closePopUp()"
+              >Cancel</a
+            >
+          </div>
+          <div>
+            <button type="submit" class="btn btn-dark">Save</button>
+          </div>
+          <div class="ms-auto">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="deleteTask(editTaskRequest.id)"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-6"></div>
+  </div>
+</div>

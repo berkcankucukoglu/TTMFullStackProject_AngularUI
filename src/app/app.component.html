@@ -26,17 +26,21 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" routerLink="categories">Categories</a>
+              <a class="dropdown-item" routerLink="">Home</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Projects</a>
+              <a class="dropdown-item" routerLink="categories">Categories</a>
             </li>
             <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">New Task</a></li>
+            <li style="cursor: pointer">
+              <a class="dropdown-item" (click)="addProjectPopUp()"
+                >New Project</a
+              >
+            </li>
           </ul>
         </li>
       </ul>
-      <form class="d-flex" role="search">
+      <!-- <form class="d-flex" role="search">
         <input
           class="form-control me-2"
           type="search"
@@ -44,9 +48,8 @@
           aria-label="Search"
         />
         <button class="btn btn-outline-light" type="submit">Search</button>
-      </form>
+      </form> -->
     </div>
   </div>
 </nav>
-
 <router-outlet />

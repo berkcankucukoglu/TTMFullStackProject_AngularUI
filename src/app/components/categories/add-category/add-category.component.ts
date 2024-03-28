@@ -12,15 +12,16 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './add-category.component.css',
 })
 export class AddCategoryComponent implements OnInit {
+  constructor(
+    private categoryService: CategoriesService,
+    private router: Router
+  ) {}
   addCategoryRequest: Category = {
     id: null,
     name: '',
     description: '',
   };
-  constructor(
-    private categoryService: CategoriesService,
-    private router: Router
-  ) {}
+
   ngOnInit(): void {}
 
   addCategory() {

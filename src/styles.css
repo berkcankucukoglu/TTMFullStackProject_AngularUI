@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Nunito&display=swap");
+:root {
+  --colorBlue: #44ddd0;
+  --colorGreen: #27d7a1;
+  --colorLight: #f8f8f8;
+  --colorGreenLight: #45f69e;
+  --colorGreenDark: #006450;
+  --colorOrange: #ff6600;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Nunito", sans-serif;
+  background: linear-gradient(
+    to right top,
+    var(--colorBlue),
+    var(--colorOrange)
+  );
+}

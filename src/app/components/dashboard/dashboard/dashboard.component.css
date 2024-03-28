@@ -1,0 +1,145 @@
+.title {
+  color: var(--colorGreenDark);
+}
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 60px);
+}
+
+.task-manager-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: 1000px;
+  max-height: 680px;
+}
+
+.sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  width: 300px;
+  padding: 42px;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.sidebar h1 {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.sidebar > button {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+.task-list-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: var(--colorLight);
+  padding: 42px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.task-list-container h1,
+.btn.circle-add-button {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.title {
+  font-family: "Lato", sans-serif;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.list-menu {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  flex-grow: 1;
+}
+
+.list-menu-item p {
+  margin: 0;
+}
+
+.list-menu-item {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 10px 15px;
+  width: 100%;
+  color: #333;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.list-menu-item.is-active {
+  background-color: var(--colorGreenDark);
+  color: var(--colorLight);
+}
+
+.list-menu > a:hover {
+  background-color: var(--colorLight);
+  color: var(--colorGreenDark);
+}
+
+.list-menu-item a > i:hover {
+  color: red;
+}
+
+.task p {
+  margin: 0;
+}
+.task {
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 5px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.task a > i:hover {
+  color: red;
+}
+
+.task.is-active {
+  background-color: var(--colorGreenDark);
+  color: var(--colorLight);
+}
+.task.complete {
+  text-decoration: line-through;
+  color: #b4b4b4;
+  cursor: auto;
+}
+
+.task:hover {
+  box-shadow: 0 0 0 5px #eee;
+  transition: box-shadow 0.3s ease;
+}
+.task:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+.circle-add-button {
+  background: var(--colorGreenDark);
+  border: none;
+}
