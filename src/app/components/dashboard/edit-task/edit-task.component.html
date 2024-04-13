@@ -34,7 +34,31 @@
             </select>
           </div>
         </div>
-        <div class="col-12 mb-3">
+        <div class="col-12 mb-3 mt-3">
+          <div class="form-check form-switch">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              role="switch"
+              id="status"
+              name="status"
+              [(ngModel)]="editTaskRequest.status"
+            />
+            <label
+              class="form-check-label"
+              for="editTaskRequest.status"
+              *ngIf="editTaskRequest.status"
+              >This task is <strong>COMPLETED</strong>.</label
+            >
+            <label
+              class="form-check-label"
+              for="editTaskRequest.status"
+              *ngIf="!editTaskRequest.status"
+              >This task is <strong>NOT COMPLETED</strong>.</label
+            >
+          </div>
+        </div>
+        <div class="col-12 mb-3 mt-3">
           <label for="description" class="form-label">Description</label>
           <textarea
             class="form-control"
@@ -69,7 +93,7 @@
           </div>
         </div>
 
-        <div class="d-flex mb-3">
+        <div class="d-flex mb-3 mt-3">
           <div>
             <a class="btn btn-danger me-3" role="button" (click)="closePopUp()"
               >Cancel</a

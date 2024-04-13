@@ -22,7 +22,9 @@ export class EditTaskComponent implements OnInit {
     private ref: MatDialogRef<EditTaskComponent>,
     private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) {
+    ref.disableClose = true;
+  }
   editTaskRequest: Duty = {
     id: null,
     name: '',
@@ -37,7 +39,9 @@ export class EditTaskComponent implements OnInit {
   };
   taskProjectTitle: string = '';
   projects: Project[] = [];
+
   ngOnInit(): void {
+    console.log(this.data);
     this.dutyService.getDuty(this.data.id).subscribe({
       next: (duty) => {
         console.log('Editing task id -> ' + duty.id);
@@ -61,7 +65,9 @@ export class EditTaskComponent implements OnInit {
             this.router.navigate([
               'dashboard/' + this.editTaskRequest.projectId,
             ]);
-            window.location.reload();
+
+            this.data.refreshProjectDuties(this.editTaskRequest.projectId);
+
             this.closePopUp();
           },
           error: (response) => {
@@ -77,7 +83,9 @@ export class EditTaskComponent implements OnInit {
         next: (response) => {
           console.log(response);
           this.router.navigate(['dashboard/' + this.editTaskRequest.projectId]);
-          window.location.reload();
+
+          this.data.refreshProjectDuties(this.editTaskRequest.projectId);
+
           this.closePopUp();
         },
         error: (response) => {
@@ -88,6 +96,10 @@ export class EditTaskComponent implements OnInit {
   }
 
   closePopUp() {
+    console.log(
+      'Canceled. ' + this.editTaskRequest.projectId + "'s list refreshed."
+    );
+    this.data.refreshProjectDuties(this.editTaskRequest.projectId);
     this.ref.close();
   }
 }

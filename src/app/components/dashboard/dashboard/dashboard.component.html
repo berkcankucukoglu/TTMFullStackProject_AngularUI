@@ -12,7 +12,12 @@
           <a (click)="editProjectPopUp(list.id)"
             ><i class="fas fa-pen-to-square me-2"></i
           ></a>
-          <p>
+          <p *ngIf="!list.description">
+            <strong
+              ><u>{{ list.name }}</u></strong
+            >
+          </p>
+          <p *ngIf="list.description">
             <strong
               ><u>{{ list.name }}</u></strong
             >
@@ -36,17 +41,35 @@
         There are currently no tasks. Please add some tasks to view them...
       </p>
       <div
-        class="d-flex task"
+        class="d-flex flex-row align-items-center justify-content-between task"
         *ngFor="let task of tasks"
-        (click)="editTaskPopUp(task.id)"
+        [ngClass]="{ complete: task.status }"
       >
-        <p>
-          <strong>{{ task.name }}</strong> <br />
-          Description: {{ task.description }}
-        </p>
-        <a class="ms-auto text-dark"
-          ><i class="fas fa-pen-to-square p-3"></i
-        ></a>
+        <div
+          class="flex-column flex-grow-1"
+          (click)="changeTaskStatus(task.id)"
+        >
+          <p class="taskName">
+            <strong>{{ task.name }}</strong>
+          </p>
+          <p *ngIf="task.description">
+            <strong>Description: </strong>{{ task.description }}
+          </p>
+          <p *ngIf="!task.description"></p>
+          <p *ngIf="task.startDate && task.endDate">
+            <strong>Start:</strong> {{ task.startDate }} <br />
+            <strong>End:</strong>
+            {{ task.endDate }}
+          </p>
+        </div>
+        <div class="d-flex align-items-center ms-2">
+          <a class="text-dark m-1" (click)="editTaskPopUp(task.id)"
+            ><i class="fas fa-pen-to-square p-3"></i
+          ></a>
+          <a class="text-dark m-1" (click)="deleteTask(task.id)"
+            ><i class="fas fa-trash-can p-3"></i
+          ></a>
+        </div>
       </div>
       <button
         class="btn circle-add-button mt-3"

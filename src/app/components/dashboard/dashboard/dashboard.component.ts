@@ -7,7 +7,6 @@ import { ProjectsService } from '../../../services/projects.service';
 import { CommonModule } from '@angular/common';
 import { EditProjectComponent } from '../edit-project/edit-project.component';
 import { Duty } from '../../../models/duty.model';
-import { Observable } from 'rxjs';
 import { TasksService } from '../../../services/tasks.service';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { EditTaskComponent } from '../edit-task/edit-task.component';
@@ -72,6 +71,11 @@ export class DashboardComponent implements OnInit {
       width: '40%',
       data: {
         id: this.projectId,
+        refreshProjectDuties: (id: number) => {
+          this.dutyService.getProjectDuties(id).subscribe((tasks: any) => {
+            this.tasks = tasks;
+          });
+        },
       },
     });
   }
@@ -81,7 +85,48 @@ export class DashboardComponent implements OnInit {
       width: '40%',
       data: {
         id: id,
+        refreshProjectDuties: (id: number) => {
+          this.dutyService.getProjectDuties(id).subscribe((tasks: any) => {
+            this.tasks = tasks;
+          });
+        },
       },
     });
+  }
+
+  changeTaskStatus(id: any) {
+    if (id) {
+      this.dutyService.switchDutyStatus(id).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.dutyService
+            .getProjectDuties(this.projectId)
+            .subscribe((tasks: any) => {
+              this.tasks = tasks;
+            });
+        },
+        error: (response) => {
+          console.log(response);
+        },
+      });
+    }
+  }
+
+  deleteTask(id: any) {
+    if (id) {
+      this.dutyService.deleteDuty(id).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.dutyService
+            .getProjectDuties(this.projectId)
+            .subscribe((tasks: any) => {
+              this.tasks = tasks;
+            });
+        },
+        error: (response) => {
+          console.log(response);
+        },
+      });
+    }
   }
 }

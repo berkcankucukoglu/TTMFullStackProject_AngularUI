@@ -55,6 +55,10 @@
   overflow-y: scroll;
 }
 
+.task-list-container .title {
+  background: var(--colorLight);
+}
+
 .task-list-container h1,
 .btn.circle-add-button {
   position: sticky;
@@ -103,7 +107,7 @@
 }
 
 .list-menu-item a > i:hover {
-  color: red;
+  color: var(--colorOrange);
 }
 
 .task p {
@@ -115,9 +119,11 @@
   border-radius: 5px;
   margin-top: 15px;
   cursor: pointer;
+  max-width: 600px;
 }
+
 .task a > i:hover {
-  color: red;
+  color: var(--colorOrange);
 }
 
 .task.is-active {
@@ -127,7 +133,11 @@
 .task.complete {
   text-decoration: line-through;
   color: #b4b4b4;
-  cursor: auto;
+  cursor: pointer;
+}
+
+.task p.taskName {
+  text-decoration: underline;
 }
 
 .task:hover {

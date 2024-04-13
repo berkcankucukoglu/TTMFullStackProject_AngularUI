@@ -41,4 +41,11 @@ export class TasksService {
       return of([]);
     }
   }
+
+  switchDutyStatus(id: string | number): Observable<Duty> {
+    return this.http.put<Duty>(
+      this.baseApiUrl + '/api/duty/status/' + id,
+      null
+    );
+  }
 }

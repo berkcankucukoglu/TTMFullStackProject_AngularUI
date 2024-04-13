@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { Duty } from '../../../models/duty.model';
@@ -21,7 +21,9 @@ export class AddTaskComponent implements OnInit {
     private ref: MatDialogRef<AddTaskComponent>,
     private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) {
+    ref.disableClose = true;
+  }
   addTaskRequest: Duty = {
     id: null,
     name: '',
@@ -34,9 +36,11 @@ export class AddTaskComponent implements OnInit {
     userId: 1,
     projectId: -1,
   };
+  taskProjectId: number = -1;
   taskProjectTitle: string = '';
 
   ngOnInit(): void {
+    this.taskProjectId = this.data.id;
     this.addTaskRequest.projectId = this.data.id;
 
     this.projectService.getProject(this.addTaskRequest.projectId).subscribe({
@@ -44,6 +48,8 @@ export class AddTaskComponent implements OnInit {
         this.taskProjectTitle = project.name;
       },
     });
+
+    console.log('Adding task to -> ' + this.taskProjectId);
   }
 
   addDuty() {
@@ -52,7 +58,9 @@ export class AddTaskComponent implements OnInit {
         console.log(task);
         this.router.navigate(['dashboard/' + this.data.id]);
         console.log(['dashboard/' + this.data.id]);
-        window.location.reload();
+
+        this.data.refreshProjectDuties(this.taskProjectId);
+
         this.closePopUp();
       },
       error: (response) => {
@@ -62,6 +70,8 @@ export class AddTaskComponent implements OnInit {
   }
 
   closePopUp() {
+    console.log('Canceled. ' + this.taskProjectId + "'s list refreshed.");
+    this.data.refreshProjectDuties(this.taskProjectId);
     this.ref.close();
   }
 }
