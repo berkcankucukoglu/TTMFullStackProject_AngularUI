@@ -1,0 +1,86 @@
+<div class="centered-content">
+  <div class="login-box">
+    <form [formGroup]="loginForm">
+      <h1 class="title">Login</h1>
+      <div class="form-group mt-3 me-3">
+        <label for="exampleInputEmail1">Email address</label>
+        <div class="d-flex align-items-center mt-2 input-field">
+          <i
+            class="fas fa-user fa-lg me-2"
+            [class.error]="
+              loginForm.controls['email'].dirty &&
+              loginForm.hasError('required', 'email')
+            "
+          ></i>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Enter your email..."
+            formControlName="email"
+          />
+        </div>
+        <small
+          *ngIf="
+            loginForm.controls['email'].dirty &&
+            loginForm.hasError('required', 'email')
+          "
+          class="text-danger"
+          >*Email is required.</small
+        >
+      </div>
+      <div class="form-group mt-3 me-3">
+        <label for="exampleInputPassword1">Password</label>
+        <div class="d-flex align-items-center mt-2 input-field">
+          <i
+            class="fas fa-key fa-lg me-2"
+            [class.error]="
+              loginForm.controls['password'].dirty &&
+              loginForm.hasError('required', 'password')
+            "
+          ></i>
+          <input
+            [type]="type"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Enter your password..."
+            formControlName="password"
+          />
+          <span class="d-flex align-items-center justify-content-center ms-2"
+            ><i class="fas {{ eyeIcon }} fa-md" (click)="hideShowPass()"></i
+          ></span>
+        </div>
+        <small
+          *ngIf="
+            loginForm.controls['password'].dirty &&
+            loginForm.hasError('required', 'password')
+          "
+          class="text-danger"
+          >*Password is required.</small
+        >
+      </div>
+      <div class="text-end mt-1 me-3">
+        <a id="forget" class="font-weight-bold" href="#"
+          ><strong>Forget Password ?</strong></a
+        >
+      </div>
+      <div class="d-flex">
+        <button
+          (click)="onLogin()"
+          type="submit"
+          class="btn btn-dark mt-3 me-3 flex-grow-1"
+        >
+          Login
+        </button>
+      </div>
+      <div class="text-center pt-4 text-muted">
+        <p>
+          Don't have account?
+          <a id="forget" routerLink="/signup"><strong>Sign Up</strong></a> now!
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

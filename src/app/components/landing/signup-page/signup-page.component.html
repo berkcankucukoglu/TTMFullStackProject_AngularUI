@@ -1,0 +1,210 @@
+<div class="centered-content">
+  <div class="login-box">
+    <form [formGroup]="signUpForm">
+      <h1 class="title">Sign Up</h1>
+
+      <div class="form-group mt-3 me-3">
+        <label for="firstName">First Name</label>
+        <div class="d-flex flex-row align-items-center mt-2 input-field">
+          <i
+            class="fas fa-file-signature fa-lg me-2"
+            [class.error]="
+              signUpForm.controls['firstName'].dirty &&
+              signUpForm.hasError('required', 'firstName')
+            "
+          ></i>
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            name="firstName"
+            placeholder="Enter your first name..."
+            formControlName="firstName"
+            required
+          />
+        </div>
+        <small
+          *ngIf="
+            signUpForm.controls['firstName'].dirty &&
+            signUpForm.hasError('required', 'firstName')
+          "
+          class="text-danger"
+          >*Firs Name is required.</small
+        >
+      </div>
+
+      <div class="form-group mt-3 me-3">
+        <label for="lastName">Last Name</label>
+        <div class="d-flex flex-row align-items-center mt-2 input-field">
+          <i
+            class="fas fa-file-signature fa-lg me-2"
+            [class.error]="
+              signUpForm.controls['lastName'].dirty &&
+              signUpForm.hasError('required', 'lastName')
+            "
+          ></i>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            name="lastName"
+            placeholder="Enter your last name..."
+            formControlName="lastName"
+            required
+          />
+        </div>
+        <small
+          *ngIf="
+            signUpForm.controls['lastName'].dirty &&
+            signUpForm.hasError('required', 'lastName')
+          "
+          class="text-danger"
+          >*Last Name is required.</small
+        >
+      </div>
+
+      <div class="form-group mt-3 me-3">
+        <label for="email">Email address</label>
+        <div class="d-flex flex-row align-items-center mt-2 input-field">
+          <i
+            class="fas fa-at fa-lg me-2"
+            [class.error]="
+              signUpForm.controls['email'].dirty &&
+              signUpForm.hasError('required', 'email')
+            "
+          ></i>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Enter your email..."
+            formControlName="email"
+            required
+          />
+        </div>
+        <small id="emailHelp" class="form-text text-muted"
+          >We'll never share your email with anyone else.</small
+        >
+        <small
+          *ngIf="
+            signUpForm.controls['email'].dirty &&
+            signUpForm.hasError('required', 'email')
+          "
+          class="text-danger"
+          >*Email is required.</small
+        >
+      </div>
+
+      <div class="form-group mt-3 me-3">
+        <label for="password">Password</label>
+        <div class="d-flex flex-row align-items-center mt-2 input-field">
+          <i
+            class="fas fa-key fa-lg me-2"
+            [class.error]="
+              signUpForm.controls['password'].dirty &&
+              signUpForm.hasError('required', 'password')
+            "
+          ></i>
+          <input
+            [type]="type"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Enter your password..."
+            formControlName="password"
+            required
+          />
+          <span class="d-flex align-items-center justify-content-center ms-2"
+            ><i class="fas {{ eyeIcon }} fa-md" (click)="hideShowPass()"></i
+          ></span>
+        </div>
+        <small
+          *ngIf="
+            signUpForm.controls['password'].dirty &&
+            signUpForm.hasError('required', 'password')
+          "
+          class="text-danger"
+          >*Password is required.</small
+        >
+        <div class="d-flex flex-row align-items-center mt-2 input-field">
+          <i
+            class="fas fa-repeat fa-lg me-2"
+            [class.error]="
+              signUpForm.controls['passwordCheck'].dirty &&
+              signUpForm.hasError('required', 'passwordCheck')
+            "
+          ></i>
+          <input
+            [type]="type"
+            class="form-control"
+            id="passwordCheck"
+            name="passwordCheck"
+            placeholder="Re-Enter your password..."
+            formControlName="passwordCheck"
+            required
+          />
+          <span class="ms-2"></span>
+        </div>
+        <small
+          *ngIf="
+            signUpForm.controls['passwordCheck'].dirty &&
+            signUpForm.hasError('required', 'passwordCheck')
+          "
+          class="text-danger"
+          >*Password is required.</small
+        >
+      </div>
+
+      <div class="form-group mt-3 me-3">
+        <label for="gender">Gender</label>
+        <div class="d-flex flex-row align-items-center mt-2 input-field error">
+          <i
+            class="fas fa-person-half-dress fa-lg me-3"
+            [class.error]="
+              signUpForm.controls['gender'].dirty &&
+              signUpForm.hasError('required', 'gender')
+            "
+          ></i>
+          <select
+            class="custom-select"
+            id="gender"
+            name="gender"
+            formControlName="gender"
+            required
+          >
+            <option selected disabled>Choose...</option>
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+            <option value="0">Prefer not to say</option>
+          </select>
+        </div>
+        <small
+          *ngIf="
+            signUpForm.controls['gender'].dirty &&
+            signUpForm.hasError('required', 'gender')
+          "
+          class="text-danger"
+          >*Please select an option.</small
+        >
+      </div>
+
+      <div class="d-flex mt-3">
+        <button
+          (click)="onSubmit()"
+          [disabled]="signUpForm.invalid"
+          type="submit"
+          class="btn btn-dark mt-3 me-3 flex-grow-1"
+        >
+          Sign Up
+        </button>
+      </div>
+      <div class="text-center pt-4 text-muted">
+        <p>
+          Already have an account?
+          <a id="forget" routerLink="/login"><strong>Login</strong></a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

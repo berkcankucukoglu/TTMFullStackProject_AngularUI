@@ -1,0 +1,14 @@
+@import url(../login-page/login-page.component.css);
+
+select {
+  padding: 2px;
+  height: 38px;
+  border-radius: 5px;
+  border: 1px solid #888;
+  flex-grow: 1;
+}
+
+input {
+  border: 1px solid #888;
+  border-radius: 5px;
+}

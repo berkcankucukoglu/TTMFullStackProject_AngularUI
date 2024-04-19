@@ -1,0 +1,47 @@
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 60px);
+}
+
+.login-box {
+  padding: 35px;
+  background: var(--colorLight);
+  border-radius: 5px;
+  width: 550px;
+  box-shadow: 20px 20px 80px #333;
+}
+
+.title {
+  color: var(--colorGreenDark);
+}
+
+#forget {
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--colorBlue);
+  transition: color 0.5s;
+}
+
+#forget:hover {
+  color: var(--colorOrange);
+}
+
+.input-field {
+  cursor: default;
+}
+
+.input-field .error {
+  color: red;
+}
+
+.input-field span {
+  min-width: 28px;
+  transition: color 0.5s;
+}
+
+.input-field span:hover {
+  color: var(--colorOrange);
+}
