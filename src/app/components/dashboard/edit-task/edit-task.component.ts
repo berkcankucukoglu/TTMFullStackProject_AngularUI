@@ -34,7 +34,7 @@ export class EditTaskComponent implements OnInit {
     endDate: null,
     status: false,
     hours: 0,
-    userId: 1,
+    userId: -1,
     projectId: -1,
   };
   taskProjectTitle: string = '';

@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container">
+    <a class="navbar-brand text-white" routerLink="">TinyTask Manager</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle text-white"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Menu
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" routerLink="/categories"
+                >All Categories</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/categories/add"
+                >New Category</a
+              >
+            </li>
+            <li *ngIf="role === 'Admin'"><hr class="dropdown-divider" /></li>
+            <li *ngIf="role === 'Admin'">
+              <a class="dropdown-item" routerLink="">All Users</a>
+            </li>
+            <li *ngIf="role === 'Admin'">
+              <a class="dropdown-item" routerLink="">New User</a>
+            </li>
+            <li *ngIf="role === 'User'"><hr class="dropdown-divider" /></li>
+            <li *ngIf="role === 'User'" style="cursor: pointer">
+              <a class="dropdown-item" (click)="addProjectPopUp()"
+                >New Project</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <a class="navbar-brand text-white" routerLink="" *ngIf="role === 'User'">
+      <i class="fas fa-user me-2"></i>Welcome {{ fullName }}</a
+    >
+
+    <span
+      class="navbar-brand text-white"
+      routerLink=""
+      *ngIf="role === 'Admin'"
+    >
+      <i class="fab fa-black-tie fa-lg me-2"></i>
+      {{ fullName }}</span
+    >
+    <button class="btn btn-outline-light" (click)="logout()">Log out</button>
+  </div>
+</nav>

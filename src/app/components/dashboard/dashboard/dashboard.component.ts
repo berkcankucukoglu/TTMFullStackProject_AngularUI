@@ -10,11 +10,12 @@ import { Duty } from '../../../models/duty.model';
 import { TasksService } from '../../../services/tasks.service';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { EditTaskComponent } from '../edit-task/edit-task.component';
+import { NavbarComponent } from '../../navbar/navbar/navbar.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NavbarComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
@@ -36,6 +37,7 @@ export class DashboardComponent implements OnInit {
       this.hasParam = Object.keys(params).length !== 0;
       this.projectId = params['projectId'];
       console.log('Selected project id -> ' + this.projectId);
+
       this.dutyService
         .getProjectDuties(params['projectId'])
         .subscribe((tasks: any) => {

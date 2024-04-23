@@ -35,7 +35,7 @@ export class EditProjectComponent implements OnInit {
     startDate: null,
     endDate: null,
     status: false,
-    userId: 1,
+    userId: -1,
     categoryId: -1,
     duties: [],
   };
@@ -79,6 +79,15 @@ export class EditProjectComponent implements OnInit {
 
   deleteProject(id: number | string | null) {
     if (this.projectDetails.id) {
+      this.dutyService.wipeProjectDuties(this.projectDetails.id).subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: (response) => {
+          console.log(response);
+        },
+      });
+
       this.projectService.deleteProject(this.projectDetails.id).subscribe({
         next: (response) => {
           console.log(response);

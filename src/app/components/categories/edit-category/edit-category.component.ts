@@ -3,11 +3,12 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CategoriesService } from '../../../services/categories.service';
 import { Category } from '../../../models/category.model';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from '../../navbar/navbar/navbar.component';
 
 @Component({
   selector: 'app-edit-category',
   standalone: true,
-  imports: [FormsModule, RouterModule],
+  imports: [FormsModule, RouterModule, NavbarComponent],
   templateUrl: './edit-category.component.html',
   styleUrl: './edit-category.component.css',
 })
@@ -16,6 +17,7 @@ export class EditCategoryComponent implements OnInit {
     id: 0,
     name: '',
     description: '',
+    userId: -1,
   };
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +31,7 @@ export class EditCategoryComponent implements OnInit {
         if (id) {
           this.categoryService.getCategory(id).subscribe({
             next: (response) => {
+              console.log(response);
               this.categoryDetails = response;
             },
           });

@@ -59,8 +59,17 @@ export class LoginPageComponent implements OnInit {
       this.auth.login(this.loginForm.value).subscribe({
         next: (response) => {
           console.log(response);
-          this.loginForm.reset();
-          this.router.navigate(['/dashboard']);
+          if (response.isSuccess || response.token) {
+            this.loginForm.reset();
+            this.auth.storeToken(response.token);
+            const tokenPayload = this.auth.decodedToken();
+            this.auth.setFullNameForStore(tokenPayload.unique_name);
+            this.auth.setRoleForStore(tokenPayload.role);
+            this.router.navigate(['/dashboard']);
+          } else {
+            this.loginForm.get('password')?.setValue('');
+            alert(response.message);
+          }
         },
         error: (response) => {
           console.log(response);

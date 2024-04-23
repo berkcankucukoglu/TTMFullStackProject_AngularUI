@@ -33,7 +33,7 @@ export class AddTaskComponent implements OnInit {
     endDate: null,
     status: false,
     hours: 0,
-    userId: 1,
+    userId: 2010,
     projectId: -1,
   };
   taskProjectId: number = -1;

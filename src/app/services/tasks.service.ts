@@ -42,6 +42,10 @@ export class TasksService {
     }
   }
 
+  wipeProjectDuties(id: number | string | null): Observable<Duty> {
+    return this.http.delete<Duty>(this.baseApiUrl + '/api/duty/project/' + id);
+  }
+
   switchDutyStatus(id: string | number): Observable<Duty> {
     return this.http.put<Duty>(
       this.baseApiUrl + '/api/duty/status/' + id,
