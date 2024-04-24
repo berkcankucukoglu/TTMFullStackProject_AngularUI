@@ -21,7 +21,7 @@ export class AddCategoryComponent implements OnInit {
     id: null,
     name: '',
     description: '',
-    userId: 2010,
+    userId: -1,
   };
 
   ngOnInit(): void {}

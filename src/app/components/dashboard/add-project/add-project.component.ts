@@ -30,7 +30,7 @@ export class AddProjectComponent implements OnInit {
     startDate: null,
     endDate: null,
     status: false,
-    userId: 2010,
+    userId: -1,
     categoryId: -1,
     duties: [],
   };

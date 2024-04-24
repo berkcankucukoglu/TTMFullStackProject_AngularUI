@@ -20,6 +20,10 @@ export class AuthService {
     this.userPayload = this.decodedToken();
   }
 
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseApiUrl + '/api/user');
+  }
+
   login(loginUserRequest: User): Observable<any> {
     return this.http.post<User>(
       this.baseApiUrl + '/api/user/authenticate',
@@ -61,10 +65,10 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
 
-  public getFullNameFromStore() {
+  getFullNameFromStore() {
     return this.fullName$.asObservable();
   }
-  public setFullNameForStore(fullName: string) {
+  setFullNameForStore(fullName: string) {
     this.fullName$.next(fullName);
   }
 
@@ -74,11 +78,11 @@ export class AuthService {
     }
   }
 
-  public getRoleFromStore() {
+  getRoleFromStore() {
     return this.role$.asObservable();
   }
 
-  public setRoleForStore(role: string) {
+  setRoleForStore(role: string) {
     this.role$.next(role);
   }
 

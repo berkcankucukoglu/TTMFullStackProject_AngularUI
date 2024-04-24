@@ -61,7 +61,9 @@ export class LoginPageComponent implements OnInit {
           console.log(response);
           if (response.isSuccess || response.token) {
             this.loginForm.reset();
-            this.auth.storeToken(response.token);
+
+            this.auth.storeToken(response.accessToken);
+
             const tokenPayload = this.auth.decodedToken();
             this.auth.setFullNameForStore(tokenPayload.unique_name);
             this.auth.setRoleForStore(tokenPayload.role);

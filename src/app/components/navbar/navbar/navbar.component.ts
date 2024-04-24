@@ -16,16 +16,16 @@ export class NavbarComponent implements OnInit {
   public fullName: string = '';
   public role: string = '';
 
-  constructor(private dialogRef: MatDialog, private auth: AuthService) {}
+  constructor(private dialogRef: MatDialog, private authService: AuthService) {}
 
   ngOnInit() {
-    this.auth.getFullNameFromStore().subscribe((value) => {
-      const fullNameFromToken = this.auth.getFullNameFromToken();
+    this.authService.getFullNameFromStore().subscribe((value) => {
+      const fullNameFromToken = this.authService.getFullNameFromToken();
       this.fullName = value || fullNameFromToken;
     });
 
-    this.auth.getRoleFromStore().subscribe((value) => {
-      const roleFromToken = this.auth.getRoleFromToken();
+    this.authService.getRoleFromStore().subscribe((value) => {
+      const roleFromToken = this.authService.getRoleFromToken();
       this.role = value || roleFromToken;
     });
   }
@@ -37,6 +37,6 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
+    this.authService.logout();
   }
 }
